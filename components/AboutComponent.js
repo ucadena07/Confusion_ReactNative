@@ -36,7 +36,7 @@ class About extends Component {
       <ScrollView >
         <History />
         <Card
-          title="Corporate Leadership" style={{ flex: 2}}>
+          title="Corporate Leadership">
           <FlatList 
             data={this.state.leaders}
             renderItem={renderLeaderItem}
