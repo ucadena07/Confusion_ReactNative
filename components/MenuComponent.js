@@ -34,6 +34,19 @@ class Menu extends Component {
 
   const { navigate } = this.props.navigation;
 
+  if (this.props.dishes.isLoading) {
+    return(
+      <Loading />
+    );
+  }
+  else if(this.props.dishes.errMess) {
+    return(
+      <View>
+        <Text>{this.props.dishes.errMess}</Text>
+      </View>
+    );
+  }
+  else{
     return(
       <FlatList
         data={this.props.dishes.dishes}
@@ -41,6 +54,8 @@ class Menu extends Component {
         keyExtractor={item => item.id.toString()}
       /> 
     );
+
+  }
   }
 }
 
