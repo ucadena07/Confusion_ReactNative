@@ -1,7 +1,8 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
+import fetch from 'cross-fetch'
 
-//=========Fetch Comments =========//
+
 export const fetchComments = () => (dispatch) => {
     return fetch(baseUrl + 'comments')
     .then(response => {
@@ -32,7 +33,6 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
-//=======Fetch Dishes===========//
 export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading());
@@ -70,7 +70,6 @@ export const addDishes = (dishes) => ({
     payload: dishes
 });
 
-//===============Fetch Promos ==================//
 export const fetchPromos = () => (dispatch) => {
     
     dispatch(promosLoading());
@@ -108,7 +107,6 @@ export const addPromos = (promos) => ({
     payload: promos
 });
 
-//==================Fetch Leaders ================//
 export const fetchLeaders = () => (dispatch) => {
     
     dispatch(leadersLoading());
@@ -145,3 +143,4 @@ export const addLeaders = (leaders) => ({
     type: ActionTypes.ADD_LEADERS,
     payload: leaders
 });
+
