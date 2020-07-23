@@ -40,6 +40,7 @@ class Reservation extends Component {
 
   render() {
     return(
+      <Card>
       <ScrollView>
         <View style={styles.formRow}>
           <Text style={styles.formLabel}>Number of Guests</Text>
@@ -117,6 +118,7 @@ class Reservation extends Component {
 
         </Modal>
       </ScrollView>
+      </Card>
     );
   }
 
