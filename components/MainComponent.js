@@ -12,6 +12,7 @@ import Dishdetail from './DishdetailComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
+import Favorites from './FavoriteComponent';
 
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
@@ -157,6 +158,26 @@ function ReservationNavigatorScreen() {
         
     );
   }
+  function FavoritesNavigatorScreen() {
+    return(
+        <HomeNavigator.Navigator
+            initialRouteName='Menu'
+            screenOptions={HeaderOptions}
+        >
+            <HomeNavigator.Screen
+                name="Favorites"
+                component={Favorites}
+                options={({ navigation }) => ({
+                    
+                  headerLeft: () => (
+                    <Icon name='menu' size={30} color='white' onPress={() => navigation.toggleDrawer()}  />  
+                  ),
+              })}
+            />
+        </HomeNavigator.Navigator>
+        
+    );
+  }
 
 function CustomDrawerContent(props) {
     return (
@@ -196,6 +217,9 @@ function MainNavigatorDrawer() {
 
             <MainNavigator.Screen name="Menu" component={MenuNavigatorScreen} options={{ drawerIcon: ({ tintColor }) => 
             <Icon name='list' type='font-awesome' size={24} color={tintColor}/>  }}/>
+
+            <MainNavigator.Screen name="My Favorites" component={FavoritesNavigatorScreen} options={{ drawerIcon: ({ tintColor}) =>
+            <Icon name='heart' type="font-awesome" size={24} color={tintColor} />}}/>
 
             <MainNavigator.Screen name="About Us" component={AboutNavigatorScreen} options={{ drawerIcon: ({ tintColor}) => 
             <Icon name='info-circle' type="font-awesome" size={24} color={tintColor} /> }} />
