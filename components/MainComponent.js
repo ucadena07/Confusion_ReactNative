@@ -11,6 +11,7 @@ import Home from './HomeComponent';
 import Dishdetail from './DishdetailComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
+import Reservation from './ReservationComponent';
 
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
@@ -136,6 +137,26 @@ function ContactNavigatorScreen() {
       
   );
 }
+function ReservationNavigatorScreen() {
+    return(
+        <HomeNavigator.Navigator
+            initialRouteName='Menu'
+            screenOptions={HeaderOptions}
+        >
+            <HomeNavigator.Screen
+                name="Reservation"
+                component={Reservation}
+                options={({ navigation }) => ({
+                    
+                  headerLeft: () => (
+                    <Icon name='menu' size={30} color='white' onPress={() => navigation.toggleDrawer()}  />  
+                  ),
+              })}
+            />
+        </HomeNavigator.Navigator>
+        
+    );
+  }
 
 function CustomDrawerContent(props) {
     return (
@@ -180,7 +201,10 @@ function MainNavigatorDrawer() {
             <Icon name='info-circle' type="font-awesome" size={24} color={tintColor} /> }} />
 
             <MainNavigator.Screen name="Contact Us" component={ContactNavigatorScreen} options={{ drawerIcon: ({ tintColor}) =>
-            <Icon name='address-card' type="font-awesome" size={22} color={tintColor} />}}/>
+            <Icon name='address-card' type="font-awesome" size={21} color={tintColor} />}}/>
+
+            <MainNavigator.Screen name="Reserve Table" component={ReservationNavigatorScreen} options={{ drawerIcon: ({ tintColor}) =>
+            <Icon name='cutlery' type="font-awesome" size={24} color={tintColor} />}}/>
         </MainNavigator.Navigator>
     );
 }
