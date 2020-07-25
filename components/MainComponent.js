@@ -13,7 +13,7 @@ import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
 import Favorites from './FavoriteComponent';
-
+import Login from './LoginComponent'
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
@@ -179,6 +179,27 @@ function ReservationNavigatorScreen() {
     );
   }
 
+  function LoginNavigatorScreen() {
+    return(
+        <HomeNavigator.Navigator
+            initialRouteName='Menu'
+            screenOptions={HeaderOptions}
+        >
+            <HomeNavigator.Screen
+                name="Login"
+                component={Login}
+                options={({ navigation }) => ({
+                    
+                  headerLeft: () => (
+                    <Icon name='menu' size={30} color='white' onPress={() => navigation.toggleDrawer()}  />  
+                  ),
+              })}
+            />
+        </HomeNavigator.Navigator>
+        
+    );
+  }
+
 function CustomDrawerContent(props) {
     return (
       <DrawerContentScrollView {...props}>
@@ -212,6 +233,10 @@ function MainNavigatorDrawer() {
                 
             }}  
         >
+
+            <MainNavigator.Screen name="Login" component={LoginNavigatorScreen} options={{ drawerIcon: ({ tintColor}) =>
+            <Icon name='sign-in' type="font-awesome" size={24} color={tintColor} />}}/>
+
             <MainNavigator.Screen name='Home' component={HomeNavigatorScreen} options={{ drawerIcon: ({ tintColor }) => 
             <Icon name='home' type='font-awesome' size={24} color={tintColor}/>  }}/>
 
@@ -229,6 +254,9 @@ function MainNavigatorDrawer() {
 
             <MainNavigator.Screen name="Reserve Table" component={ReservationNavigatorScreen} options={{ drawerIcon: ({ tintColor}) =>
             <Icon name='cutlery' type="font-awesome" size={24} color={tintColor} />}}/>
+
+           
+
         </MainNavigator.Navigator>
     );
 }

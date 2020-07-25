@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView, StyleSheet, Picker, Switch, Alert, Modal } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
-
+import * as Animatable from 'react-native-animatable';
 
 class Reservation extends Component {
 
@@ -26,7 +26,7 @@ class Reservation extends Component {
 
   handleReservation() {
     console.log(JSON.stringify(this.state));
-    this.toggleModal();
+    this.reserveButton();
   }
 
   resetForm() {
@@ -38,8 +38,34 @@ class Reservation extends Component {
     });
   }
 
+  reserveButton(){
+    
+    const reservation = 'Number of Guests ' + this.state.guests + 
+                        '\n Smoking: ' + this.state.smoking +
+                        '\n Date and Time: ' + this.state.date;
+    Alert.alert(
+      'Your Reservation OK?',
+      reservation,
+      [
+        { text: 'Cancel', 
+        onPress: () => console.log('Not Deleted'),
+        style: ' cancel'
+        },
+        {
+          text: 'Ok',
+          onPress: () => this.resetForm()
+        }
+      ],
+      { cancelable: false }
+    )
+  } 
+
   render() {
+
+
+
     return(
+      <Animatable.View animation="zoomIn" duration={2000} delay={1000}>
       <Card>
       <ScrollView>
         <View style={styles.formRow}>
@@ -119,6 +145,7 @@ class Reservation extends Component {
         </Modal>
       </ScrollView>
       </Card>
+      </Animatable.View>
     );
   }
 
