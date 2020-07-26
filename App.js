@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Loading } from './components/LoadingComponents';
-
+import { registerRootComponent } from 'expo';
 
 const { persistor, store} = ConfigureStore();
 
@@ -26,3 +26,4 @@ export default class App extends React.Component {
 }
 
 
+registerRootComponent(App);

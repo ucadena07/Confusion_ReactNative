@@ -31,9 +31,9 @@ class Reservation extends Component {
     this.reserveButton();
   }
   async obtainNotificationPermission() {
-    let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+    let permission = await Permissions.getAsync(Permissions.NOTIFICATIONS);
     if (permission.status !== 'granted') {
-        permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
         if (permission.status !== 'granted') {
             Alert.alert('Permission not granted to show notifications');
         }
